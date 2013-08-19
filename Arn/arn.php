@@ -511,7 +511,7 @@ Class ARN implements iArn
         foreach($details as $pDetails)
         {
             $keyIdf = $map[$pDetails][1];
-            $detailData = call_user_func_array(array('ARN', $map[$pDetails][0]), array(array('propertyId'=> $propList)));
+            $detailData = call_user_func_array(array('ARN', $map[$pDetails][0]), array(array('propertyId'=> $propList), array(), array(0, -1)));
 
             foreach($detailData as $data)
                 $tmpData[$data->$keyIdf][$pDetails][] = $data;

@@ -157,7 +157,10 @@ Class ARN_Util
         if(!$limit)
             $limit = array(0, 100);
         
-        $limit = ' limit '.$limit[0].', '.$limit[1];
+        if($limit[1]!=-1)
+            $limit = ' limit '.$limit[0].', '.$limit[1];
+        else
+            $limit='';
         
         $joins = '';
         foreach($options as $option)
