@@ -144,7 +144,6 @@ function test($mthName)
             $reservationDetails = Arn::prepareReservation($detailsData);
 
             $userDetails = array(
-
                 'guestsPrimaryFirstName' => 'FN',
                 'guestsPrimaryMiddleName' => '',
                 'guestsPrimaryLastName' => 'LN',
@@ -163,6 +162,12 @@ function test($mthName)
                 'guestsAddressCountryCode' => 'US',
                 'guestsAddressExtraInfo' => '',
                 'ccType' => 'CA',
+                /*
+                 * You can use two fake card numbers to force credit card failures to ensure you handle them properly. 
+                 * 4321432143214327 will cause an authorization declined error and 5454545454545454 will cause an amount
+                 * that must be charged is different from amount authorized error. 4111111111111111 can be used on the
+                 * test gateways to book a successful reservation. 
+                 */
                 //'ccNumber' => '4321432143214327',
                 //'ccNumber' => '5454545454545454',
                 'ccNumber' => '4111111111111111',
