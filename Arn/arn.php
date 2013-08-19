@@ -30,7 +30,12 @@ Class ARN implements iArn
         Arn_language::setLangCode(self::$langCode);
     }
     
-    public static function getAvailability(&$param, $filter=array(), $sort=array(), $limit=array())
+    public static function getAvailability($param, $filter=array(), $sort=array(), $limit=array())
+    {
+        return self::getAvailabilityIn($param, $filter, $sort, $limit);
+    }
+    
+    private static function getAvailabilityIn(&$param, $filter=array(), $sort=array(), $limit=array())
     {
         $validation = ARN_Validate::validate($param, self::$validateCfg['getAvailability']);
         if($validation!==true)
@@ -118,7 +123,7 @@ Class ARN implements iArn
         if($detailsValidation!==true)
             throw new Arn_Error(Arn_language::getLabel('error_common'), $detailsValidation);
         
-        $res = self::getAvailability($param, $filter, $sort, $limit);
+        $res = self::getAvailabilityIn($param, $filter, $sort, $limit);
         $res = self::addDetails2XMLRes($param, $res, $details);
         
         return $res;

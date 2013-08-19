@@ -6,7 +6,7 @@ require_once 'Arn/arn.php';
 //getPropertyTypes, getPropertyAirports, getPOI, getMeetingRooms, getCountries, getContinents, getBrands, getAmenities, getAmenityTypes, getAirports,
 //getProperties, getAvailability, getAvailabilityWithDetails, getParticularRateDetails, getByXML, reservationCancellation
 
-test('getAvailability');
+test('getAvailabilityWithDetails');
 
 
 ///
@@ -95,15 +95,14 @@ function test($mthName)
         }
 
         if('getAvailability' == $mthName) {
-            $in_params = array(   
-                                'inDate' => date('Y-m-d'), 
-                                'outDate' => date('Y-m-d', strtotime('tomorrow')),
-                                'rooms' => 1,
-                                'adults' => 1,
-                                'children' =>0,
-                                'hotels'=>array('123')
-                            );
-            $res = Arn::getAvailability(    $in_params,
+            $res = Arn::getAvailability(    array(   
+                                                'inDate' => date('Y-m-d'), 
+                                                'outDate' => date('Y-m-d', strtotime('tomorrow')),
+                                                'rooms' => 1,
+                                                'adults' => 1,
+                                                'children' =>0,
+                                                'hotels'=>array('123')
+                                            ),
                                             array('city'=>'chicago', 'name'=>'hotel'),
                                             array('price'),
                                             20

@@ -45,7 +45,7 @@ interface iArn
      * 
      * returns the PHP object corresponding to ARN format (http://static.reservetravel.com/documents/trip-examples/AvailabilityResponse.xml)
      */
-    public static function getAvailability(&$param, $filter, $sort, $limit);
+    public static function getAvailability($param, $filter, $sort, $limit);
     
     
     /**
