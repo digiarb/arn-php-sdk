@@ -1,5 +1,4 @@
 <?php
-
 $arnConfig['apiWSDL']       = 'http://tripauthority.com/hotel.asmx?WSDL';
 $arnConfig['apiSecureURL']  = 'https://tripauthority.com/hotel.asmx';
 $arnConfig['apiXSD']        = 'http://static.reservetravel.com/documents/TripAuthorityRequest.xsd';
@@ -262,3 +261,6 @@ $validateCfg['getPropertySuppliers'] = array (
     'filtersDB' => array('propertyId'=>'PropertyID:in'),
     'sorts' => array('propertyId'=>'ProperyID')
 );
+
+if(file_exists(__DIR__.'/local_config.php'))
+    require_once __DIR__.'/local_config.php';
