@@ -193,7 +193,7 @@ $validateCfg['getContinents'] = array (
 );
 
 $validateCfg['getCountries'] = array (
-    'table' => 'arn_countries',
+    'table' => 'arn_country',
     'filtersValidate' => array('code'=>'sArray|string', 'name'=>'sArray|string', 'continentId'=>'iArray|integer'),
     'filtersDB' => array('code'=>'CountryCode:in', 'name'=>'CountryName:in', 'continentId'=>'ContinentID:in'),
     'sorts' => array('code'=>'CountryCode', 'name'=>'CountryName', 'continentId'=>'ContinentID')
