@@ -1,6 +1,19 @@
 <?php
 Class ARN_Util
 {
+    private static $lastAPIRequest = '';
+    private static $lastAPIResponse = '';
+    
+    public static function getLastAPIRequest()
+    {
+        return self::$lastAPIRequest;
+    }
+    
+    public static function getLastAPIResponse()
+    {
+        return self::$lastAPIResponse ;
+    }
+    
     /**
      * 
      * @param type $xmlObject
@@ -124,6 +137,7 @@ Class ARN_Util
     {
         ARN_Validate::validateXml($xml_string);
         $xml = simplexml_load_string($xml_string);
+        self::$lastAPIRequest = $xml;
         //print_r($xml);die;
         
         $params = array();
@@ -147,6 +161,7 @@ Class ARN_Util
         
         $result_xml = simplexml_load_string($result);
         
+        self::$lastAPIResponse = $result_xml;
         return $result_xml;
     }
     
