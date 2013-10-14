@@ -138,7 +138,7 @@ $validateCfg['reservationCancellation'] = array(
 
 $validateCfg['availabilityProperties'] = array (
     'table' => 'arn_property_active',
-    'filtersValidate' => array('name'=>'string', 'countryCode'=>'sArray|string', 'city'=>'sArray|string', 'postal'=>'sArray|string', 'address'=>'sArray|string', 'roomPrice'=>'MMArray', 'totalAmount'=>'MMArray', 'starRating'=>'iArray|integer'),
+    'filtersValidate' => array('name'=>'string', 'countryCode'=>'sArray|string', 'city'=>'sArray|string', 'postal'=>'string', 'address'=>'string', 'roomPrice'=>'MMArray', 'totalAmount'=>'MMArray', 'starRating'=>'iArray|integer'),
     'filtersDB' => array('name'=>'PropertyName:like', 'countryCode'=>'CountryCode:in', 'city'=>'City:in', 'postal'=>'Postal:in', 'Address'=>'Address1:in', 'starRating'=>'PriceClassId:between'),
     'sorts' => array('name'=>'PropertyName', 'countryCode'=>'CountryCode', 'city'=>'City', 'price'=>false, 'starRating'=>'PriceTypeId')
 );
@@ -152,7 +152,7 @@ $validateCfg['getPropertyTypes'] = array (
 
 $validateCfg['getProperties'] = array (
     'table' => 'arn_property_active',
-    'filtersValidate' => array('id'=>'iArray|integer', 'brandCode'=>'sArray|string', 'name'=>'sArray|string', 'city'=>'string', 'postal'=>'sArray|string', 'address'=>'sArray|string', 'state'=>'string', 'countryCode'=>'string'),
+    'filtersValidate' => array('id'=>'iArray|integer', 'brandCode'=>'sArray|string', 'name'=>'sArray|string', 'city'=>'string', 'postal'=>'string', 'address'=>'string', 'state'=>'string', 'countryCode'=>'string'),
     'filtersDB' => array('id'=>'PropertyID:in', 'name'=>'PropertyName:inLike', 'city'=>'City:in', 'postal'=>'Postal:in', 'address'=>'Address1:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
     'sorts' => array('id'=>'PropertyId', 'brandCode'=>'BrandCode', 'name'=>'PropertyName', 'city'=>'City', 'state'=>'State', 'countryCode'=>'CountryCode')
 );

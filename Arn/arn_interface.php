@@ -246,6 +246,8 @@ interface iArn
      * name string|array
      * city string
      * state string
+     * postal string,
+     * address string,
      * countryCode string
      * 
      * @param type $options can be any from $filter keys
