@@ -507,6 +507,7 @@ Class ARN implements iArn
     private static function getPropertiesDetailsSRC($propList, $details)
     {
         $map = self::$arnConfig['propertyDetailsMap'];
+        $tmpData = array();
         
         foreach($details as $pDetails)
         {
