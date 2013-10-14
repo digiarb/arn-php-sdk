@@ -6,7 +6,7 @@ try{
     $res = Arn::getProperties(  array('city'=>'chicago', 'type'=>1),
                                 array('city'),
                                 20,
-                                array('meeting_room', 'airport', 'amenity', 'descrition', 'image', 'policy', 'supplier')
+                                array('meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
             );
     print_r($res);
 }

@@ -422,7 +422,7 @@ Class ARN_Validate
         
         $errors = array();
        
-        $allovedDetails = array('meeting_room', 'airport', 'amenity', 'descrition', 'image', 'policy', 'supplier', 'type');
+        $allovedDetails = array('meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier', 'type');
         foreach($details as $detailValue)
         {
             if(!in_array($detailValue, $allovedDetails))

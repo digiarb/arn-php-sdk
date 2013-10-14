@@ -10,7 +10,7 @@ also config.php can contain the default width options see with option in the met
 
 $default_options = array(
             'getAvailability' => array('airports','amenities','brand','brand_images'),
-            'getProperties' => array('airport','descrition', 'meeting_room')
+            'getProperties' => array('airport','description', 'meeting_room')
             );
 */
 	/**
@@ -66,10 +66,10 @@ interface iArn
      * @param type $limit array(start, count)|count
      * 
      * @param type $details is array of additional entities which will be included into results
-     * $details = array('meeting_room', 'airport', 'amenity', 'descrition', 'image', 'policy', 'supplier')
+     * $details = array('meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
      * 
      * returns the PHP object corresponding to ARN format (http://static.reservetravel.com/documents/trip-examples/AvailabilityResponse.xml)
-     * the additional entities like airport OR descrition will be added to the hotels properties as subobject.
+     * the additional entities like airport OR description will be added to the hotels properties as subobject.
      */
 
     public static function getAvailabilityWithDetails($param, $filter=array(), $sort=array(), $limit=array(), $details=array());
@@ -220,12 +220,12 @@ interface iArn
      * the selected entities will be sorted by this criteria. Can be any from $filter keys.
      * 
      * @param type $limit (array('from', 'count'))
-     * the limitation of teh results
+     * the limitation of the results
      * 
      * @param type $details    used to add other property entity to the result
-     * can be one or group of ('meeting_room', 'airport', 'amenity', 'descrition', 'image', 'policy', 'supplier')
+     * can be one or group of ('meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
      * 
-     * For example: array('airport', 'descrition', 'meeting_room')
+     * For example: array('airport', 'description', 'meeting_room')
      * )
      * 
      */
