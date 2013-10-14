@@ -213,6 +213,7 @@ interface iArn
      * city string
      * state string
      * countryCode string
+     * type int
      * 
      * 
      * @param type $sort 

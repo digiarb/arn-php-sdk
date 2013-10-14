@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 require_once '../Arn/arn.php';
 
 try{
-    $res = Arn::getProperties(  array('city'=>'chicago', 'name'=>'hotel'),
+    $res = Arn::getProperties(  array('city'=>'chicago', 'type'=>1),
                                 array('city'),
                                 20,
                                 array('meeting_room', 'airport', 'amenity', 'descrition', 'image', 'policy', 'supplier')
