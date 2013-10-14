@@ -39,7 +39,7 @@ interface iArn
      * searchTimeout
      * )
      * 
-     * @param type $filter array('name'=>string, 'countryCode'=>array|string, 'city'=>array|string, 'roomPrice'=>array(min, max)|max, 'totalAmount'=>array(min, max)|max, 'starRating'=>array(min, max)|max)
+     * @param type $filter array('name'=>string, 'countryCode'=>array|string, 'city'=>array|string, 'postal'=>array|string, 'address'=>array|string, 'roomPrice'=>array(min, max)|max, 'totalAmount'=>array(min, max)|max, 'starRating'=>array(min, max)|max)
      * @param type $sort array('countryCode'=>'asc', 'name'=>'desc', 'city', 'price', 'starRating')
      * @param type $limit array(start, count)|count
      * 
@@ -61,7 +61,7 @@ interface iArn
      * hotels* (array of hotels IDs)
      * displayCurrency*
      * 
-     * @param type $filter array('name'=>string, 'countryCode'=>array|string, 'city'=>array|string, 'roomPrice'=>array(min, max)|max, 'totalAmount'=>array(min, max)|max, 'starRating'=>array(min, max)|max)
+     * @param type $filter array('name'=>string, 'countryCode'=>array|string, 'city'=>array|string, 'postal'=>array|string, 'address'=>array|string, 'roomPrice'=>array(min, max)|max, 'totalAmount'=>array(min, max)|max, 'starRating'=>array(min, max)|max)
      * @param type $sort array('countryCode'=>'asc', 'name'=>'desc', 'city', 'price', 'starRating')
      * @param type $limit array(start, count)|count
      * 
