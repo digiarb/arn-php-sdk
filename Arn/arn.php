@@ -45,7 +45,7 @@ Class ARN implements iArn
         if($optionsValidation!==true)
             throw new Arn_Error(Arn_language::getLabel('error_common'), $optionsValidation);
         
-        if(!isset($param['hotels']))
+        if(empty($param['hotels']))
             $param['hotels'] = array();
         
         if(empty($param['hotels']) && !$filter)
@@ -53,11 +53,13 @@ Class ARN implements iArn
         
         if($param['hotels'] && is_numeric($param['hotels']))
             $param['hotels'] = array($param['hotels']);
-                
+
+
         if($filter)
         {
             //search hotels by filters
             $hotels = self::getAvailabilityProperties($filter, $sort, $limit);
+
             if($hotels)
             { 
                 $hotelsIds = array();
@@ -71,15 +73,14 @@ Class ARN implements iArn
             }
         }
         
-        //print_r($param['hotels']);die;
+        if(!$param['hotels'])
+            return array();
         
         $results = array();
         $block_count = self::$arnConfig['availabilityHotelNumberPerRequest'];
         $client = Client::getInstance(self::$arnConfig);
         for($i=0;$i<ceil(count($param['hotels'])/$block_count);$i++)
         {
-            //$t1 = microtime(true); $tT = gettimeofday(); $time=date('H:i:s').':'.$tT['usec']; echo $time."-";
-            
             $hotelIDs = array_slice($param['hotels'], $i*$block_count, $block_count);
             $xml_string = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <ArnRequest>
@@ -93,7 +94,6 @@ Class ARN implements iArn
         </HotelAvailability>
     </Availability>
 </ArnRequest>";
-            //print_r($xml_string);die;
 
             $result_xml = ARN_Util::sendRequest($client, $xml_string);
             Arn_util::checkXMLError($result_xml);
@@ -333,6 +333,10 @@ Class ARN implements iArn
         return self::getByOptions($filter, $sort, $limit, __METHOD__);
     }
     
+    public static function getPropertyInfo($filter, $sort=array(), $limit=array()){
+        return self::getByOptions($filter, $sort, $limit, __METHOD__);
+    }
+    
     public static function getPropertyAirports($filter, $sort=array(), $limit=array()){
         return self::getByOptions($filter, $sort, $limit, __METHOD__);
     }
@@ -495,6 +499,9 @@ Class ARN implements iArn
     
     private static function addDetails2XMLRes($param, $res, $details)
     {
+        if(empty($res))
+            return ($res);
+        
         $propDetails = self::getPropertiesDetailsSRC($param['hotels'], $details);
         
         foreach($res['Availability']['HotelAvailability']['Hotel'] as &$hotel)

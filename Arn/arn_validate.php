@@ -318,6 +318,11 @@ Class ARN_Validate
                             $valid = true;
                     break;
                     
+                    case "location":
+                        if(is_array($filterValue) && count($filterValue)==3)
+                            $valid = true;
+                    break;
+                    
                     case "MMArray":
                         if(!is_array($filterValue) && !is_numeric($filterValue))
                             $errorMsg = sprintf(Arn_language::getLabel('validation_max_min_pair'), $key);
@@ -422,7 +427,7 @@ Class ARN_Validate
         
         $errors = array();
        
-        $allovedDetails = array('meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier', 'type');
+        $allovedDetails = array('hotel', 'meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier', 'type');
         foreach($details as $detailValue)
         {
             if(!in_array($detailValue, $allovedDetails))

@@ -284,6 +284,42 @@ Class ARN_Util
             $slqWhere.='AND '.$fieldName.' like \'%'.$value.'%\' ';
     }
     
+    private static function location(&$slqWhere, $fieldName, $value)
+    {
+        //format Lat, Long, Dist
+        $dist = $value[2]; // miles!!!
+
+        //print_r($cvbPropertiesList);die;
+        $resPOI = array();
+
+        $lon1 = $value[1] - $dist / abs(cos(deg2rad($value[0])) * 69);
+        $lon2 = $value[1] + $dist / abs(cos(deg2rad($value[0])) * 69);
+        $lat1 = $value[0] - ($dist / 69);
+        $lat2 = $value[0] + ($dist / 69);
+
+        $query = "
+        SELECT p.Latitude, p.Longitude, p.PropertyName, p.PropertyID,
+        3956 * 2 * ASIN(SQRT( POWER(SIN((" . $value[0] . " - p.Latitude) *  pi()/180 / 2), 2) +
+                COS(" . $value[0] . " * pi()/180) * COS(p.Latitude * pi()/180) * POWER(SIN((" . $value[1] . " -p.Longitude) * pi()/180 / 2), 2) ))
+        as distance
+        FROM arn_property_active p
+        WHERE
+            p.latitude between " . $lat1 . " AND " . $lat2 . " AND
+            p.longitude between " . $lon1 . " AND " . $lon2 . "
+        HAVING distance < " . $dist . "
+        ORDER BY Distance
+        ";
+        
+        $res = array();
+        $results = Arn_model::getResults($query);
+        foreach($results as $prop)
+            $res[] = $prop->PropertyID;
+        
+        $res = implode('\',\'', $res);
+        
+        $slqWhere.='AND '.$fieldName.' in (\''.$res.'\') ';
+    }
+    
     public static function addPropertyKeys($properties)
     {
         $res = array();

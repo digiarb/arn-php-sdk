@@ -28,6 +28,7 @@ $arnConfig['db']['autoinit'] = TRUE;
 $arnConfig['db']['stricton'] = FALSE;
 
 $arnConfig['propertyDetailsMap'] = array(
+    'hotel' => array('getPropertyInfo', 'PropertyID'),
     'meeting_room' => array('getMeetingRooms', 'PropertyId'),
     'airport' => array('getPropertyAirports', 'PropertyID'),
     'amenity' => array('getPropertyAmenities', 'PropertyID'),
@@ -138,8 +139,8 @@ $validateCfg['reservationCancellation'] = array(
 
 $validateCfg['availabilityProperties'] = array (
     'table' => 'arn_property_active',
-    'filtersValidate' => array('name'=>'string', 'countryCode'=>'sArray|string', 'city'=>'sArray|string', 'postal'=>'string', 'address'=>'string', 'roomPrice'=>'MMArray', 'totalAmount'=>'MMArray', 'starRating'=>'iArray|integer', 'type'=>'iArray|integer'),
-    'filtersDB' => array('name'=>'PropertyName:like', 'countryCode'=>'CountryCode:in', 'city'=>'City:in', 'postal'=>'Postal:in', 'Address'=>'Address1:in', 'starRating'=>'PriceClassId:between', 'type'=>'ProprtyTypeId:in'),
+    'filtersValidate' => array('name'=>'string', 'countryCode'=>'sArray|string', 'city'=>'sArray|string', 'postal'=>'string', 'address'=>'string', 'roomPrice'=>'MMArray', 'totalAmount'=>'MMArray', 'starRating'=>'iArray|integer', 'type'=>'iArray|integer', 'location'=>'location'),
+    'filtersDB' => array('name'=>'PropertyName:like', 'countryCode'=>'CountryCode:in', 'city'=>'City:in', 'postal'=>'Postal:in', 'Address'=>'Address1:in', 'starRating'=>'PriceClassId:between', 'type'=>'ProprtyTypeId:in', 'location'=>'PropertyID:location'),
     'sorts' => array('name'=>'PropertyName', 'countryCode'=>'CountryCode', 'city'=>'City', 'price'=>false, 'starRating'=>'PriceTypeId')
 );
 
@@ -218,6 +219,13 @@ $validateCfg['getPOI'] = array (
     'filtersValidate' => array('id'=>'iArray|integer', 'category'=>'sArray|atring', 'name'=>'sArray|string', 'city'=>'string', 'state'=>'string', 'countryCode'=>'string'),
     'filtersDB' => array('id'=>'PoiID:in', 'category'=>'Categiry:in', 'name'=>'Name:in', 'city'=>'City:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
     'sorts' => array('id'=>'PoiID', 'category'=>'Category', 'name'=>'Name', 'city'=>'City', 'state'=>'State', 'countryCode'=>'CountryCode')
+);
+
+$validateCfg['getPropertyInfo'] = array (
+    'table' => 'arn_property_active',
+    'filtersValidate' => array('propertyId'=>'iArray|integer'),
+    'filtersDB' => array('propertyId'=>'PropertyID:in'),
+    'sorts' => array('propertyId'=>'ProperyID')
 );
 
 $validateCfg['getPropertyAirports'] = array (
