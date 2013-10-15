@@ -319,8 +319,13 @@ Class ARN_Validate
                     break;
                     
                     case "location":
-                        if(is_array($filterValue) && count($filterValue)==3)
-                            $valid = true;
+                        if(!is_array($filterValue) || count($filterValue)!=3 || !is_numeric($filterValue[0]) || !is_numeric($filterValue[1]) || !is_numeric($filterValue[2]))
+                        {
+                            $errorMsg = sprintf(Arn_language::getLabel('validation_location'),  $key);
+                            break;
+                        }
+                    
+                        $valid = true;
                     break;
                     
                     case "MMArray":
