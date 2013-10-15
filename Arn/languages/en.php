@@ -33,4 +33,4 @@ $lang['validation_limit_max'] = 'Max value for limit count option is 100.';
 $lang['validation_unallowed_detail'] = 'Unallowed details option.';
 $lang['validation_future_date'] = '%s date cannot be earlier than today\'s date';
 $lang['validation_XML_error'] = 'XML parcing error occured';
-$lang['validation_location'] = 'The %s field must be in format (Latitude, Longitude, Distance).';
+$lang['validation_location'] = 'The %s field must be in format array(Latitude, Longitude, Distance)';
