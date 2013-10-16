@@ -41,7 +41,8 @@ Class ARN_Util
      */
     public static function availabilityStandartisation($result_array)
     {
-        if(array_keys($result_array['Availability']['HotelAvailability']['Hotel'])[0] === '@attributes')
+        $tArrKeys = array_keys($result_array['Availability']['HotelAvailability']['Hotel']);
+        if($tArrKeys[0] === '@attributes')
             $result_array['Availability']['HotelAvailability']['Hotel'] = array($result_array['Availability']['HotelAvailability']['Hotel']);
             
         $hotelsData = &$result_array['Availability']['HotelAvailability']['Hotel'];
@@ -50,20 +51,22 @@ Class ARN_Util
             if(empty($hotelData['RatePlan']))
                 continue;
             
-            if(array_keys($hotelData['RatePlan'])[0] === '@attributes')
+            $tArrKeysR = array_keys($hotelData['RatePlan']);
+            if($tArrKeysR[0] === '@attributes')
                 $hotelData['RatePlan'] = array($hotelData['RatePlan']);
             
             foreach ($hotelData['RatePlan'] as &$hotelDataRatePlan)
             {
-                if(array_keys($hotelDataRatePlan['Room'])[0] === '@attributes')
+                $tArrKeysD = array_keys($hotelDataRatePlan['Room']);
+                if($tArrKeysD[0] === '@attributes')
                     $hotelDataRatePlan['Room'] = array($hotelDataRatePlan['Room']);
                 
                 foreach ($hotelDataRatePlan['Room'] as &$room)
                 {
                     if(empty($room['NightlyRate']))
                         continue;
-                    
-                    if(array_keys($room['NightlyRate'])[0] === '@attributes')
+                    $tArrKeysN = array_keys($room['NightlyRate']);
+                    if($tArrKeysN[0] === '@attributes')
                         $room['NightlyRate'] = array($room['NightlyRate']);
                 }
             }
@@ -81,8 +84,8 @@ Class ARN_Util
     public static function detailsStandartisation($result_array)
     {
         $roomData = &$result_array['RateDetails']['HotelRateDetails']['Hotel']['RatePlan']['Room'];
-                    
-        if(array_keys($roomData['NightlyRate'])[0] === '@attributes')
+        $tArrKeys = array_keys($roomData['NightlyRate']);
+        if($tArrKeys[0] === '@attributes')
             $roomData['NightlyRate'] = array($roomData['NightlyRate']);
         
         return $result_array;
@@ -127,7 +130,12 @@ Class ARN_Util
         if($result_xml->Error)
         {
             if($result_xml->Error->attributes())
-                throw new Arn_Error(Arn_language::getLabel('error_common'), array((string)$result_xml->Error->attributes()['Code']=>(string)$result_xml->Error->attributes()['Description']));
+            {
+                $err = $result_xml->Error->attributes();
+                $code = $err['Code'];
+                $descr = $err['Description'];
+                throw new Arn_Error(Arn_language::getLabel('error_common'), array((string)$code=>(string)$descr));
+            }
             else
                 throw new Arn_Error(Arn_language::getLabel('error_common'), (string)$result_xml->Error->Message);
         }

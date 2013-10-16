@@ -376,7 +376,8 @@ Class ARN implements iArn
     /*Private section*/
     private static function getByOptions($filter, $sort=array(), $limit=array(), $source)
     {
-        $source = explode('::', $source)[1];
+        $source = explode('::', $source);
+        $source = $source[1];
         $optionsValidation = ARN_Validate::opitonsValidate($filter, $sort, $limit, $source);
         if($optionsValidation!==true)
             throw new Arn_Error(Arn_language::getLabel('error_common'), $optionsValidation);
