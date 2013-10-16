@@ -28,7 +28,7 @@ $arnConfig['db']['autoinit'] = TRUE;
 $arnConfig['db']['stricton'] = FALSE;
 
 $arnConfig['propertyDetailsMap'] = array(
-    'hotel' => array('getPropertyInfo', 'PropertyID'),
+    'hotelDetails' => array('getPropertyInfo', 'PropertyID'),
     'meeting_room' => array('getMeetingRooms', 'PropertyId'),
     'airport' => array('getPropertyAirports', 'PropertyID'),
     'amenity' => array('getPropertyAmenities', 'PropertyID'),

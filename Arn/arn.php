@@ -524,7 +524,10 @@ Class ARN implements iArn
             $detailData = call_user_func_array(array('ARN', $map[$pDetails][0]), array(array('propertyId'=> $propList), array(), array(0, -1)));
 
             foreach($detailData as $data)
-                $tmpData[$data->$keyIdf][$pDetails][] = $data;
+                if($pDetails=='hotelDetails')
+                    $tmpData[$data->$keyIdf][$pDetails] = $data;
+                else
+                    $tmpData[$data->$keyIdf][$pDetails][] = $data;
         }
         
         return $tmpData;

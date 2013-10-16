@@ -66,7 +66,7 @@ interface iArn
      * @param type $limit array(start, count)|count
      * 
      * @param type $details is array of additional entities which will be included into results
-     * $details = array('hotel', 'meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
+     * $details = array('hotelDetails', 'meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
      * 
      * returns the PHP object corresponding to ARN format (http://static.reservetravel.com/documents/trip-examples/AvailabilityResponse.xml)
      * the additional entities like airport OR description will be added to the hotels properties as subobject.

@@ -14,7 +14,7 @@ try{
                                         array('city'=>'chicago', 'name'=>'hotel'),
                                         array(),
                                         10,
-                                        array('meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
+                                        array('hotelDetails', 'meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
                                 );
     print_r($res);
 }
