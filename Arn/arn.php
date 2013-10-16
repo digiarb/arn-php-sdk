@@ -314,7 +314,8 @@ Class ARN implements iArn
         if(!empty($filter['meetingRoomOccupancyId']) && empty($filter['withOccupancy']))
             $filter['withOccupancy']= true;
             
-        $source = explode('::', __METHOD__)[1];
+        $source = explode('::', __METHOD__);
+        $source = $source[1];
         $optionsValidation = ARN_Validate::opitonsValidate($filter, $sort, $limit, $source);
         if($optionsValidation!==true)
             throw new Arn_Error(Arn_language::getLabel('error_common'), $optionsValidation);
