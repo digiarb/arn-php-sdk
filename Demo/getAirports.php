@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 require_once '../Arn/arn.php';
 
 try{
-    $res = Arn::getAirports(  array('city'=>'chicago', 'airportCode'=>'MDW'),
+    $res = Arn::getAirports(  array('city'=>'chicago', 'name'=>'port'),
                                 array('city'),
                                 20);
     print_r($res);

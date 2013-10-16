@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 require_once '../Arn/arn.php';
 
 try{
-    $res = Arn::getPOI( array(),
+    $res = Arn::getPOI( array('name'=>'house'),
                         array()
                         );
     print_r($res);

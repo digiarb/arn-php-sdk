@@ -161,7 +161,7 @@ $validateCfg['getProperties'] = array (
 $validateCfg['getAirports'] = array (
     'table' => 'arn_airport',
     'filtersValidate' => array('id'=>'iArray|integer', 'code'=>'sArray|string', 'name'=>'sArray|string', 'city'=>'string', 'state'=>'string', 'countryCode'=>'string'),
-    'filtersDB' => array('id'=>'AirportID:in', 'code'=>'AirportCode:in', 'name'=>'AirportName:in', 'city'=>'City:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
+    'filtersDB' => array('id'=>'AirportID:in', 'code'=>'AirportCode:in', 'name'=>'AirportName:inLike', 'city'=>'City:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
     'sorts' => array('id'=>'AirportId', 'code'=>'AirportCode', 'name'=>'AirportName', 'city'=>'City', 'state'=>'State', 'countryCode'=>'CountryCode')
 );
 
@@ -217,7 +217,7 @@ $validateCfg['getMeetingRooms'] = array (
 $validateCfg['getPOI'] = array (
     'table' => 'arn_poi',
     'filtersValidate' => array('id'=>'iArray|integer', 'category'=>'sArray|atring', 'name'=>'sArray|string', 'city'=>'string', 'state'=>'string', 'countryCode'=>'string'),
-    'filtersDB' => array('id'=>'PoiID:in', 'category'=>'Categiry:in', 'name'=>'Name:in', 'city'=>'City:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
+    'filtersDB' => array('id'=>'PoiID:in', 'category'=>'Categiry:in', 'name'=>'Name:inLike', 'city'=>'City:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
     'sorts' => array('id'=>'PoiID', 'category'=>'Category', 'name'=>'Name', 'city'=>'City', 'state'=>'State', 'countryCode'=>'CountryCode')
 );
 
