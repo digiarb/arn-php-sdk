@@ -14,7 +14,7 @@ try{
                                     array('name'=>'hotel', 'location'=>array(34.88106, -92.11334, 10)),
                                     array('price'),
                                     20,
-                                    array('hotel')
+                                    array('hotelDetails')
                                 );
     print_r($res);
 }
