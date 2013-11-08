@@ -76,7 +76,7 @@ Class ARN implements iArn
         }
         
         if(!$param['hotels'])
-            return array();
+            return array('totalCount'=>0);
         
         $results = array();
         $block_count = self::$arnConfig['availabilityHotelNumberPerRequest'];
@@ -514,7 +514,7 @@ Class ARN implements iArn
     
     private static function addDetails2XMLRes($param, $res, $details)
     {
-        if(empty($res))
+        if(empty($res) || !$res['totalCount'])
             return ($res);
         
         $propDetails = self::getPropertiesDetailsSRC($param['hotels'], $details);
