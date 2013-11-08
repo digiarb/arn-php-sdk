@@ -30,11 +30,9 @@ Class ARN_Model
             $res[] = $row;
         }
         
-        foreach (self::$db->iterate('SELECT FOUND_ROWS() as found_rows') as $row) {
-            $cntRes = $row;
-        }
+        $cntRes = self::$db->fetchOneRow('SELECT FOUND_ROWS() as found_rows');
         
-        $res['totalCount'] = $cntRes;
+        $res['totalCount'] = $cntRes->found_rows;
         return $res;
     }
 }
