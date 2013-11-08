@@ -34,6 +34,7 @@ Class ARN_Model
             $cntRes = $row;
         }
         
-        return array($res, $cntRes);
+        $res['totalCount'] = $cntRes;
+        return $res;
     }
 }
