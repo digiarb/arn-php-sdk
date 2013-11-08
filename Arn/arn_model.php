@@ -30,6 +30,10 @@ Class ARN_Model
             $res[] = $row;
         }
         
-        return $res;
+        foreach (self::$db->iterate('SELECT FOUND_ROWS() as found_rows') as $row) {
+            $cntRes = $row;
+        }
+        
+        return array($res, $cntRes);
     }
 }

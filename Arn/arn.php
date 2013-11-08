@@ -59,7 +59,9 @@ Class ARN implements iArn
         {
             //search hotels by filters
             $hotels = self::getAvailabilityProperties($filter, $sort, $limit);
-
+            $totalCount = $hotels['totalCount'];
+            $hotels = $hotels[0];
+            
             if($hotels)
             { 
                 $hotelsIds = array();
@@ -114,6 +116,7 @@ Class ARN implements iArn
         $result_array = self::applyPriceFilter($result_array, $filter);
         $result_array = self::applyPriceSort($result_array, $sort);
         
+        $result_array['totalCount'] = $totalCount;
         return $result_array;
     }
     
@@ -272,7 +275,10 @@ Class ARN implements iArn
             throw new Arn_Error(Arn_language::getLabel('error_common'), $detailsValidation);
         
         $properties = self::getByOptions($filter, $sort, $limit, __METHOD__);
+        $totalCount = $properties['totalCount'];
+        unset($properties['totalCount']);
         $properties = self::addDetails($properties, $details);
+        $properties['totalCount'] = $totalCount;
         
         return $properties;
     }
@@ -327,6 +333,9 @@ Class ARN implements iArn
         $query = ARN_Util::prepareSQL($filter, $sort, $limit, $source, $options);
         
         $results = Arn_model::getResults($query);
+        $results['totalCount']=$results[1];
+        $results['totalCount'] = $results['totalCount']->found_rows;
+        unset($results[1]);
         return $results;
     }
     
@@ -384,9 +393,10 @@ Class ARN implements iArn
         
         $query = ARN_Util::prepareSQL($filter, $sort, $limit, $source);
         
-        //print_r($query);die;
-        
         $results = Arn_model::getResults($query);
+        $results['totalCount']=$results[1];
+        $results['totalCount'] = $results['totalCount']->found_rows;
+        unset($results[1]);
         return $results;
     }
     
@@ -394,6 +404,9 @@ Class ARN implements iArn
     {
         $query = ARN_Util::prepareSQL($filter, $sort, $limit, 'availabilityProperties');
         $properties = Arn_model::getResults($query);
+        $properties['totalCount']=$properties[1];
+        $properties['totalCount'] = $properties['totalCount']->found_rows;
+        unset($properties[1]);
         return $properties;
     }
     
@@ -489,7 +502,7 @@ Class ARN implements iArn
     
     private static function addDetails($properties, $details)
     {
-        $properties = ARN_Util::addPropertyKeys($properties);
+        $properties[0] = ARN_Util::addPropertyKeys($properties[0]);
         $propDetails = self::getPropertiesDetailsSRC(array_keys($properties), $details);
         
         foreach($propDetails as $propId=>$pDetails)
@@ -522,6 +535,7 @@ Class ARN implements iArn
         {
             $keyIdf = $map[$pDetails][1];
             $detailData = call_user_func_array(array('ARN', $map[$pDetails][0]), array(array('propertyId'=> $propList), array(), array(0, -1)));
+            $detailData = $detailData[0];
 
             foreach($detailData as $data)
                 if($pDetails=='hotelDetails')

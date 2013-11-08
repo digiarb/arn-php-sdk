@@ -209,7 +209,7 @@ Class ARN_Util
         if(substr($slqWhere, 0, 3)=='AND')
             $slqWhere = substr($slqWhere, 4);
         else
-            return 'SELECT * FROM '.$cfg['table'].$joins.$limit;
+            return 'SELECT SQL_CALC_FOUND_ROWS * FROM '.$cfg['table'].$joins.$limit;
         
         
         $slqWhere = 'WHERE '.$slqWhere;
@@ -221,7 +221,7 @@ Class ARN_Util
                 if(array_key_exists($sortOption, $cfg['sorts']) && $cfg['sorts'][$sortOption])
                     $sortRes[] = $cfg['sorts'][$sortOption].' '.$sortType;
         
-        $query = 'SELECT * FROM '.$cfg['table'].' '.$joins.' '.$slqWhere;
+        $query = 'SELECT SQL_CALC_FOUND_ROWS * FROM '.$cfg['table'].' '.$joins.' '.$slqWhere;
         
         if($sortRes)
             $query.= 'ORDER BY '.implode(', ',$sortRes);
