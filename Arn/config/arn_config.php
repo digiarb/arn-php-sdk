@@ -179,6 +179,13 @@ $validateCfg['getAmenities'] = array (
     'sorts' => array('id'=>'AmenityTypeID', 'Type'=>'AmenityTypeID')
 );
 
+$validateCfg['getAttributes'] = array (
+    'table' => 'arn_attribute',
+    'filtersValidate' => array('id'=>'iArray|integer'),
+    'filtersDB' => array('id'=>'AmenityID:in'),
+    'sorts' => array('id'=>'AttributeID')
+);
+
 $validateCfg['getBrands'] = array (
     'table' => 'arn_brand_images',
     'filtersValidate' => array('code'=>'sArray|string', 'name'=>'sArray|string'),

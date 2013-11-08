@@ -299,6 +299,11 @@ Class ARN implements iArn
         return self::getByOptions($filter, $sort, $limit, __METHOD__);
     }
     
+    public static function getAttributes($filter, $sort=array(), $limit=array())
+    {
+        return self::getByOptions($filter, $sort, $limit, __METHOD__);
+    }
+    
     public static function getBrands($filter, $sort=array(), $limit=array()){
         return self::getByOptions($filter, $sort, $limit, __METHOD__);
     }
