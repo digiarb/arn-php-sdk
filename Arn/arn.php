@@ -53,7 +53,8 @@ Class ARN implements iArn
         
         if($param['hotels'] && is_numeric($param['hotels']))
             $param['hotels'] = array($param['hotels']);
-
+        
+        $totalCount = count($param['hotels']);
 
         if($filter)
         {
