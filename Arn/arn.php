@@ -54,31 +54,28 @@ Class ARN implements iArn
         if($param['hotels'] && is_numeric($param['hotels']))
             $param['hotels'] = array($param['hotels']);
         
-        $totalCount = count($param['hotels']);
-
         if($filter)
         {
+            if($param['hotels'])
+                $filter['PropertyID'] = $param['hotels'];
+            
             //search hotels by filters
             $hotels = self::getAvailabilityProperties($filter, $sort, $limit);
             $totalCount = $hotels['totalCount'];
             unset($hotels['totalCount']);
             
-            if($hotels)
-            { 
-                $hotelsIds = array();
-                foreach ($hotels as $hotel)
-                    $hotelsIds[] = $hotel->PropertyID;
+            $hotelsIds = array();
+            foreach ($hotels as $hotel)
+                $hotelsIds[] = $hotel->PropertyID;
 
-                if($param['hotels'])
-                    $param['hotels'] = array_merge($param['hotels'], $hotelsIds);
-                else
-                    $param['hotels'] = $hotelsIds;
-            }
+                $param['hotels'] = $hotelsIds;
         }
+        else
+            $totalCount = count($param['hotels']);
         
         if(!$param['hotels'])
             return array('totalCount'=>0);
-        
+
         $results = array();
         $block_count = self::$arnConfig['availabilityHotelNumberPerRequest'];
         $client = Client::getInstance(self::$arnConfig);

@@ -140,7 +140,7 @@ $validateCfg['reservationCancellation'] = array(
 $validateCfg['availabilityProperties'] = array (
     'table' => 'arn_property_active',
     'filtersValidate' => array('name'=>'string', 'countryCode'=>'sArray|string', 'city'=>'sArray|string', 'postal'=>'string', 'address'=>'string', 'roomPrice'=>'MMArray', 'totalAmount'=>'MMArray', 'starRating'=>'iArray|integer', 'type'=>'iArray|integer', 'location'=>'location'),
-    'filtersDB' => array('name'=>'PropertyName:like', 'countryCode'=>'CountryCode:in', 'city'=>'City:in', 'postal'=>'Postal:in', 'Address'=>'Address1:in', 'starRating'=>'PriceClassId:between', 'type'=>'ProprtyTypeId:in', 'location'=>'PropertyID:location'),
+    'filtersDB' => array('name'=>'PropertyName:like', 'countryCode'=>'CountryCode:in', 'city'=>'City:in', 'postal'=>'Postal:in', 'Address'=>'Address1:in', 'starRating'=>'PriceClassId:between', 'type'=>'ProprtyTypeId:in', 'location'=>'PropertyID:location', 'PropertyID'=>'PropertyID:in'),
     'sorts' => array('name'=>'PropertyName', 'countryCode'=>'CountryCode', 'city'=>'City', 'price'=>false, 'starRating'=>'PriceTypeId')
 );
 
