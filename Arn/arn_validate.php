@@ -164,6 +164,9 @@ Class ARN_Validate
 
                     if(isset($validationRules['gtThen']) && !($data[$fieldName]>$data[$validationRules['gtThen']]))
                         $errors[$fieldName] =  sprintf(Arn_language::getLabel('validation_greater_then'), $fieldName, $validationRules['gtThen']);
+                    
+                    if(isset($validationRules['unique']) && (in_array('iArray', $types) || in_array('sArray', $types)) && array_unique($data[$fieldName]) != $data[$fieldName])
+                        $errors[$fieldName] =  sprintf(Arn_language::getLabel('validation_unique'), $fieldName);
                 }
                 
                 //callback process

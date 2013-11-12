@@ -43,7 +43,7 @@ $validateCfg['getAvailability'] = array(
     'rooms'=>array('type'=>'integer', 'rules'=>'required|min:1|max:99'),
     'adults'=>array('type'=>'integer', 'rules'=>'required|min:0|max:99'),
     'children'=>array('type'=>'integer', 'rules'=>'required|min:0|max:99|default:0'),
-    'hotels'=>array('type'=>'integer|iArray', 'rules'=>''),
+    'hotels'=>array('type'=>'integer|iArray', 'rules'=>'unique'),
     'displayCurrency'=>array('type'=>'string', 'rules'=>'required|default:USD'),
     'searchTimeout'=>array('type'=>'integer', 'rules'=>'required|default:15|min:0')
     );
@@ -146,7 +146,7 @@ $validateCfg['availabilityProperties'] = array (
 
 $validateCfg['getPropertyTypes'] = array (
     'table' => 'arn_property_type',
-    'filtersValidate' => array('typeId'=>'iArray|integer', 'type'=>'aArray|string'),
+    'filtersValidate' => array('typeId'=>'iArray|integer', 'type'=>'sArray|string'),
     'filtersDB' => array('typeId'=>'PropertyTypeId:in', 'type'=>'PropertyType:in'),
     'sorts' => array('typeId'=>'PropertyTypeId', 'type'=>'PropertyType')
 );
@@ -167,7 +167,7 @@ $validateCfg['getAirports'] = array (
 
 $validateCfg['getAmenityTypes'] = array (
     'table' => 'arn_amenity_type',
-    'filtersValidate' => array('id'=>'iArray|integer', 'type'=>'aArray|string'),
+    'filtersValidate' => array('id'=>'iArray|integer', 'type'=>'sArray|string'),
     'filtersDB' => array('id'=>'AmenityTypeId:in', 'type'=>'AmenityType:in'),
     'sorts' => array('id'=>'AmenityTypeId', 'type'=>'AmenityType')
 );

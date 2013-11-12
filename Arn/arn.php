@@ -40,7 +40,7 @@ Class ARN implements iArn
         $validation = ARN_Validate::validate($param, self::$validateCfg['getAvailability']);
         if($validation!==true)
             throw new Arn_Error(Arn_language::getLabel('error_common'), $validation);
-        
+
         $optionsValidation = ARN_Validate::opitonsValidate($filter, $sort, $limit, 'availabilityProperties');
         if($optionsValidation!==true)
             throw new Arn_Error(Arn_language::getLabel('error_common'), $optionsValidation);
