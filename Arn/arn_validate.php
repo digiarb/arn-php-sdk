@@ -410,20 +410,23 @@ Class ARN_Validate
     {
         if(!$limit)
             return true;
-        
+
         $errors = array();
         if( (!is_integer($limit) && !is_array($limit))
             || (is_array($limit) && 
                     (count($limit)!=2 || !is_integer($limit[0]) || !is_integer($limit[1]))
                )
           )
-            $errors['limitParameter'] = Arn_language::getLabel('validation_limit_incorrect');
-        
-        if(is_integer($limit))
-            $limit = array(0, $limit);
-        
-        if($limit[1]>100)
-            $errors['limitParameter'] = Arn_language::getLabel('validation_limit_max');
+          $errors['limitParameter'] = Arn_language::getLabel('validation_limit_incorrect');
+
+        if(!$errors)
+        {
+            if(is_integer($limit))
+                $limit = array(0, $limit);
+
+            if($limit[1]>100)
+                $errors['limitParameter'] = Arn_language::getLabel('validation_limit_max');
+        }
         
         return $errors?$errors:true;
     }
