@@ -192,6 +192,7 @@ Class ARN implements iArn
                 $additionalData[$key] = $additionalData[$key];
             
         $client = Client::getSecureInstance(self::$arnConfig);
+        $price = $reservationData["roomCostTotalAmount"] - $reservationData["roomCostTaxAmount"] - $reservationData["roomCostGatewayFee"];
             
         $xml_string = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <ArnRequest>
@@ -207,7 +208,7 @@ Class ARN implements iArn
                     <Address Type=\"{$userDetails["guestsAddressType"]}\" Address=\"{$userDetails["guestsAddressAddress"]}\" City=\"{$userDetails["guestsAddressCity"]}\" Region=\"{$userDetails["guestsAddressRegion"]}\" PostalCode=\"{$userDetails["guestsAddressPostalCode"]}\" CountryCode=\"{$userDetails["guestsAddressCountryCode"]}\" ExtraInfo=\"{$userDetails["guestsAddressExtraInfo"]}\"/>
                 </Primary>
             </Guests>
-            <RoomCost Price=\"{$reservationData["roomCostPrice"]}\" TaxAmount=\"{$reservationData["roomCostTaxAmount"]}\" GatewayFee=\"{$reservationData["roomCostGatewayFee"]}\" TotalAmount=\"{$reservationData["roomCostTotalAmount"]}\" CurrencyCode=\"{$reservationData["roomCostCurrencyCode"]}\"/>
+            <RoomCost Price=\"{$price}\" TaxAmount=\"{$reservationData["roomCostTaxAmount"]}\" GatewayFee=\"{$reservationData["roomCostGatewayFee"]}\" TotalAmount=\"{$reservationData["roomCostTotalAmount"]}\" CurrencyCode=\"{$reservationData["roomCostCurrencyCode"]}\"/>
             <BookingFee Amount=\"{$reservationData["bookingFeeAmount"]}\" CurrencyCode=\"{$reservationData["bookingFeeCurrencyCode"]}\"/>
         </HotelReservation>
         <CreditCard Type=\"{$userDetails["ccType"]}\" Number=\"{$userDetails["ccNumber"]}\" Expiration=\"{$userDetails["ccExpiration"]}\" CVV2=\"{$userDetails["ccCVV2"]}\" Holder=\"{$userDetails["ccHolder"]}\" Address=\"{$userDetails["ccAddress"]}\" City=\"{$userDetails["ccCity"]}\" Region=\"{$userDetails["ccRegion"]}\" PostalCode=\"{$userDetails["ccPostalCode"]}\" CountryCode=\"{$userDetails["ccCountryCode"]}\"/>
