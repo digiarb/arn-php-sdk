@@ -210,7 +210,7 @@ $validateCfg['getCountries'] = array (
 $validateCfg['getLocations'] = array (
     'table' => 'arn_location',
     'filtersValidate' => array('id'=>'iArray|integer', 'city'=>'string', 'state'=>'string', 'countryCode'=>'string'),
-    'filtersDB' => array('id'=>'LocationID:in', 'city'=>'City:in', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
+    'filtersDB' => array('id'=>'LocationID:in', 'city'=>'City:inLike', 'state'=>'StateCode:in', 'countryCode'=>'CountryCode:in'),
     'sorts' => array('id'=>'LocationId', 'city'=>'City', 'state'=>'State', 'countryCode'=>'CountryCode')
 );
 
