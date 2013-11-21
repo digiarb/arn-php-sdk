@@ -292,6 +292,24 @@ Class ARN_Util
             $slqWhere.='AND '.$fieldName.' like \'%'.$value.'%\' ';
     }
     
+    private static function inStartLike(&$slqWhere, $fieldName, $value)
+    {
+        if(is_array($value))
+        {
+            $slqWhere.='AND (';
+            $i=0;
+            foreach($value as $val)
+            {
+                if($i++)
+                    $slqWhere.=' OR ';
+                $slqWhere.=$fieldName.' like \''.$val.'%\' ' ;
+            }
+            $slqWhere.=')';
+        }
+        else
+            $slqWhere.='AND '.$fieldName.' like \''.$value.'%\' ';
+    }
+    
     private static function location(&$slqWhere, $fieldName, $value)
     {
         //format Lat, Long, Dist
