@@ -167,7 +167,20 @@ Class ARN implements iArn
         $data = array();
 
         foreach(self::$validateCfg['reservationParams'] as $key => $value)
-            $data[lcfirst($key)] = ARN_Util::getAElement($detailsData, $value);
+        {
+            if(substr($value, 0, 4) == 'SUM:')
+            {
+                $value = substr($value, 4);
+                $gArgs = explode('[X]', $value);
+
+                $tmp = ARN_Util::getAElement($detailsData, $gArgs[0]);
+                $data[lcfirst($key)] = 0;
+                foreach($tmp as $gEl)
+                    $data[lcfirst($key)] += ARN_Util::getAElement($gEl, $gArgs[1]);
+            }
+            else
+                $data[lcfirst($key)] = ARN_Util::getAElement($detailsData, $value);
+        }
         
         return $data;
     }
@@ -192,7 +205,6 @@ Class ARN implements iArn
                 $additionalData[$key] = $additionalData[$key];
             
         $client = Client::getSecureInstance(self::$arnConfig);
-        $price = $reservationData["roomCostTotalAmount"] - $reservationData["roomCostTaxAmount"] - $reservationData["roomCostGatewayFee"];
             
         $xml_string = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <ArnRequest>
@@ -208,7 +220,7 @@ Class ARN implements iArn
                     <Address Type=\"{$userDetails["guestsAddressType"]}\" Address=\"{$userDetails["guestsAddressAddress"]}\" City=\"{$userDetails["guestsAddressCity"]}\" Region=\"{$userDetails["guestsAddressRegion"]}\" PostalCode=\"{$userDetails["guestsAddressPostalCode"]}\" CountryCode=\"{$userDetails["guestsAddressCountryCode"]}\" ExtraInfo=\"{$userDetails["guestsAddressExtraInfo"]}\"/>
                 </Primary>
             </Guests>
-            <RoomCost Price=\"{$price}\" TaxAmount=\"{$reservationData["roomCostTaxAmount"]}\" GatewayFee=\"{$reservationData["roomCostGatewayFee"]}\" TotalAmount=\"{$reservationData["roomCostTotalAmount"]}\" CurrencyCode=\"{$reservationData["roomCostCurrencyCode"]}\"/>
+            <RoomCost Price=\"{$reservationData["roomCostPrice"]}\" TaxAmount=\"{$reservationData["roomCostTaxAmount"]}\" GatewayFee=\"{$reservationData["roomCostGatewayFee"]}\" TotalAmount=\"{$reservationData["roomCostTotalAmount"]}\" CurrencyCode=\"{$reservationData["roomCostCurrencyCode"]}\"/>
             <BookingFee Amount=\"{$reservationData["bookingFeeAmount"]}\" CurrencyCode=\"{$reservationData["bookingFeeCurrencyCode"]}\"/>
         </HotelReservation>
         <CreditCard Type=\"{$userDetails["ccType"]}\" Number=\"{$userDetails["ccNumber"]}\" Expiration=\"{$userDetails["ccExpiration"]}\" CVV2=\"{$userDetails["ccCVV2"]}\" Holder=\"{$userDetails["ccHolder"]}\" Address=\"{$userDetails["ccAddress"]}\" City=\"{$userDetails["ccCity"]}\" Region=\"{$userDetails["ccRegion"]}\" PostalCode=\"{$userDetails["ccPostalCode"]}\" CountryCode=\"{$userDetails["ccCountryCode"]}\"/>
@@ -478,13 +490,12 @@ Class ARN implements iArn
             }
         }
         
-        
         //Sort rooms by TOTAL inside Hotels RoomPlans
         foreach($hotelsData as $hotel_key => &$hotelData)
             foreach($hotelData['RatePlan'] as $rateKey => &$ratePlan)
                 usort($ratePlan['Room'], function($a, $b)
                 {
-                    if($a['Total'] > $b['Total'])
+                    if(!isset($a['Total']) || !isset($b['Total']) || $a['Total'] > $b['Total'])
                         return 1;
                 }
                 );
