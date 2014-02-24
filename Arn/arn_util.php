@@ -339,7 +339,8 @@ Class ARN_Util
         $res = array();
         $results = Arn_model::getResults($query);
         foreach($results as $prop)
-            $res[] = $prop->PropertyID;
+            if(isset($prop->PropertyID))
+                $res[] = $prop->PropertyID;
         
         $res = implode('\',\'', $res);
         
