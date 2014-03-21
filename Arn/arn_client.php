@@ -12,7 +12,7 @@ class Client
     public static function getInstance($arnConfig)
     {
         if (!isset(self::$soapClient))
-            self::$soapClient = new SoapClient($arnConfig['apiWSDL'], array('encoding'=>'utf-8', 'trace' => false));
+            self::$soapClient = new SoapClient($arnConfig['apiWSDL'], array('location'=>$arnConfig['apiURL'], 'encoding'=>'utf-8', 'trace' => false));
         
         return self::$soapClient;
     }
