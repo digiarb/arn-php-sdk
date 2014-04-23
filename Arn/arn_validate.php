@@ -133,7 +133,7 @@ Class ARN_Validate
                             break;
                             
                             case "arnCreditCardExpirationDate":
-                                if(preg_match("/^(\d{2})\/(\d{2})$/i", $data[$fieldName], $aMatch) && (int)$aMatch[1]>1 && (int)$aMatch[1]<13)
+                                if(preg_match("/^(\d{2})\/(\d{2})$/i", $data[$fieldName], $aMatch) && (int)$aMatch[1]>=1 && (int)$aMatch[1]<13)
                                     $typeValidated = true;
                                 else
                                     $errorMsg = sprintf(Arn_language::getLabel('validation_arnCreditCardExpirationDate'),  $fieldName);
