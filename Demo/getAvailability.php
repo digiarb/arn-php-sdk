@@ -9,7 +9,7 @@ try{
                                         'rooms' => 1,
                                         'adults' => 1,
                                         'children' =>0,
-                                        'hotels'=>array('123')
+                                        //'hotels'=>array('123')
                                     ),
                                     array('city'=>'chicago', 'name'=>'hotel'),
                                     array('price'),

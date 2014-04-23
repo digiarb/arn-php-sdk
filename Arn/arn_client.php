@@ -12,7 +12,7 @@ class Client
     public static function getInstance($arnConfig)
     {
         if (!isset(self::$soapClient))
-            self::$soapClient = new SoapClient($arnConfig['apiWSDL'], array('location'=>$arnConfig['apiURL'], 'encoding'=>'utf-8', 'trace' => false));
+            self::$soapClient = new SoapClient($arnConfig['apiWSDL'], array('location'=>$arnConfig['apiURL'], 'encoding'=>'utf-8', 'trace' => false, 'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP)); 
         
         return self::$soapClient;
     }
@@ -20,7 +20,7 @@ class Client
     public static function getSecureInstance($arnConfig)
     {
         if (!isset(self::$secureSoapClient))
-            self::$secureSoapClient = new SoapClient($arnConfig['apiWSDL'], array('location'=>$arnConfig['apiSecureURL'], 'encoding'=>'utf-8', 'trace' => false)); 
+            self::$secureSoapClient = new SoapClient($arnConfig['apiWSDL'], array('location'=>$arnConfig['apiSecureURL'], 'encoding'=>'utf-8', 'trace' => false , 'compression' => (SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP ), 'ssl_method' => SOAP_SSL_METHOD_SSLv3));
         
         return self::$secureSoapClient;
     }
