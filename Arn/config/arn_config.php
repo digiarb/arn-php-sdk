@@ -1,7 +1,7 @@
 <?php
 $arnConfig['apiWSDL']       = 'http://tripauthority.com/hotel.asmx?WSDL';
 $arnConfig['apiURL']        = 'http://tripauthority.com/hotel.asmx';
-$arnConfig['apiSecureURL']  = 'https://tripauthority.com/hotel.asmx';
+$arnConfig['apiSecureURL']  = 'http://tripauthority.com/hotel.asmx';
 $arnConfig['apiXSD']        = 'http://static.reservetravel.com/documents/TripAuthorityRequest.xsd';
 
 $arnConfig['siteID']        = '';

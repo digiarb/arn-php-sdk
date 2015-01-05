@@ -4,17 +4,19 @@ require_once '../Arn/arn.php';
 
 try{
     $res = Arn::getAvailabilityWithDetails(array(   
-                                            'inDate' => date('Y-m-d'),
+                                            'inDate' => date('Y-m-d'), 
                                             'outDate' => date('Y-m-d', strtotime('tomorrow')),
                                             'rooms' => 1,
-                                            'adults' => 1,
+                                            'adults' => 2,
                                             'children' =>0,
-                                            'hotels'=>array('123')
-                                        ),
-                                        array('city'=>'chicago', 'name'=>'hotel'),
+                                            'hotels'=>array('31458'),
+                                            'displayCurrency' => 'USD',
+                                            'searchTimeout' => '30'
+                                        )
+                                        /*array('city'=>'chicago', 'name'=>'hotel'),
                                         array(),
                                         10,
-                                        array('hotelDetails', 'meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')
+                                        array('hotelDetails', 'meeting_room', 'airport', 'amenity', 'description', 'image', 'policy', 'supplier')*/
                                 );
     print_r($res);
 }

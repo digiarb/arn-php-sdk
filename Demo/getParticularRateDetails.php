@@ -9,10 +9,10 @@ try{
                                             'rooms' => 1,
                                             'adults' => 1,
                                             'children' => 0,
-                                            'hotelId' => 2617,
-                                            'ratePlanCode' => '7psyvb7r7nypxjafq1ule9k6k',
+                                            'hotelId' => 31458,
+                                            'ratePlanCode' => 'bz45kod6nxwvpphh7ixba8ggh',
                                             'ratePlanGateway' => 28,
-                                            'roomCode' => '5fpns6oljpwvkpjymvexi2sen'
+                                            'roomCode' => '949coqvyzv52eeiwdehrqme0q'
                                             )
                                         );
 
@@ -46,7 +46,7 @@ try{
         //'ccNumber' => '4321432143214327',
         //'ccNumber' => '5454545454545454',
         'ccNumber' => '4111111111111111',
-        'ccExpiration' => '01/15',
+        'ccExpiration' => '03/15',
         'ccCVV2' => '',
         'ccHolder' => 'holder',
         'ccAddress' => 'holder',
