@@ -9,10 +9,10 @@ try{
                                             'rooms' => 1,
                                             'adults' => 1,
                                             'children' => 0,
-                                            'hotelId' => 31458,
-                                            'ratePlanCode' => 'bz45kod6nxwvpphh7ixba8ggh',
+                                            'hotelId' => 2617,
+                                            'ratePlanCode' => 'dfru7fkjylcwjz2200cb2itk',
                                             'ratePlanGateway' => 28,
-                                            'roomCode' => '949coqvyzv52eeiwdehrqme0q'
+                                            'roomCode' => '1i0v7gmxkt25pcbptcvdknd9'
                                             )
                                         );
 
